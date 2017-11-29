@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>type 判断</title>
+</head>
+
+<body>
+    <script>
+        // var arr = ['1', '2'];
+        // var func = function () {
+
+        // };
+        // var obj = { name: "ysw" };
+        // console.log(obj.toString());//[object Object]
+        // // Object 是obj的原型对象
+        // console.log(arr.toString());
+        // console.log(func.toString());
+        // var num = 123;
+        // console.log(num.toString());
+        // var a = Object.prototype.toString.call(undefined);
+        // console.log(a);
+        //判断num是数值类型
+        // var type = function(obj){
+        //     var b = Object.prototype.toString.call(obj);
+        //     if(b=="[object Array]"){
+        //         console.log("1");
+        //     }
+        // }
+        // type(arr);
+        // var isArray = function (obj) {
+        //     return Object.prototype.toString.call(obj) === '[object Array]';
+        // }
+        // var isFunc = function (obj) {
+        //     return Object.prototype.toString.call(obj) === '[object Function]';
+        // }
+        // console.log(isFunc(func));
+        // var Type = {
+        //     isArray: function (obj) {
+        //         return Object.prototype.toString.call(obj) === '[object Array]';
+        //     },
+           
+        // }
+        // var type = {
+        //     isArray: function (obj) {
+        //         return Object.prototype.toString.call(obj) === '[object Function]';
+        //     },
+        // }
+        // console.log( Type.isArray(arr));
+        // let 块级作用域
+        // var key = 'Array';
+        // Type["is"+key]='fdfdf';
+        // console.log(isArray);
+        var Type = {};
+        for(let i = 0,type;type=['String','Array','Function','Number','Boolean'][i];i++){
+            console.log(i, type);
+            Type['is'+type]=function(obj){
+                return Object.prototype.toString.call(obj) === '[object ' + type + ']'
+            };
+        }
+        console.log(Type.isArray([]));
+        var arr = 'is';
+        var num ={};
+        num['is'+arr]=function(){
+            console.log(5);
+        };
+        console.log(num.isis());
+    </script>
+</body>
+<!-- sim un ob arr num str-->
+
+</html>
