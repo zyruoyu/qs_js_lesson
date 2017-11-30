@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图书类</title>
+    <style>
+    .box{
+        width: 200px;
+        height: 200px;
+        background-color: red;
+        overflow: hidden;
+    }
+    .inner{
+        width: 100px;
+        height: 100px;
+        background-color: green;
+        margin-top:20px;
+    }
+    </style>
+</head>
+
+<body>
+    <div class="box">
+        <div class="inner"></div>
+    </div>
+    <script>
+    //     var Book = function (isbn, title, author) {//封装
+    //         // this.isbn = isbn;
+    //         if (arguments.length == 0) {//函数运行时代码为我们解析this argument
+    //             throw new Error('没有指定isbn');
+    //         }
+    //         //    console.log( this.checkIsbn(isbn));
+    //         this.author = [];
+    //         this.setIsbn(isbn);
+    //         this.setTitle(title);
+    //         this.setAuthor(author);
+    //         // this.title = title;   
+    //     }
+
+
+    //     Book.prototype = {
+    //         getTitle:function(){
+    //             return this.title;
+    //         },
+    //         getAuthor:function(){
+    //             return this.author.join(',');
+    //         },
+    //         getIsbn:function(){
+    //             return this.isbn;
+    //         },
+    //         setAuthor:function(author){
+    //             if(author){
+    //                 this.author.push(author);
+    //             }
+    //         },
+    //         setTitle:function(title){
+                
+    //             this.title = title || 'No title specified';
+                
+    //         },
+    //         setIsbn: function (isbn) {
+    //             if (this._checkIsbn(isbn)) {
+    //                 this.isbn = isbn;
+    //             } else {
+    //                 throw new Error('有误')
+    //             }
+    //         },
+    //         _checkIsbn: function (isbn) {
+    //             //9位 正数 正则 按照模式匹配内容
+    //             // -范围 []表示一个字符 {长度6,9} ^从字符串的开始进行匹配 $匹配到字符串的结束
+    //             return /^[0-9]{11}$/.test(isbn)
+    //         }
+    //     }
+
+    //     // 手机号正则 /^1[0-9]{10}$/
+    //     var book = new Book('12345678921', '邂逅相遇', '晨曦');
+    //     // console.log(book.getIsbn());
+    //     // console.log(book.isbn);
+    //     // console.log(book.getAuthor);
+    //     //封装既是隐藏
+    //     // 写类的人 暴露少一些接口 用类的人就会更简单且可控
+    //     // checkIsbn 方法 public 没有必要让外界理解
+    //    console.log( book.checkIsbn('1234567909'));
+    //    book.isbn = '13456789011';
+    //    设计类 封装的粒度 私有的属性和方法
+    // 确保类本事的完整，方便调用
+        var Book = function(newIsbn,newTitle,newAuthor){
+            // 要把isbn title author 做为私有属性
+            //设为局部变量
+            var isbn,title,author =[];
+            function checkIsbn(isbn){
+                return /^[0-9]{9}$/.test(isbn);
+            }
+            this.setIsbn = function(newIsbn){
+                if(checkIsbn(newIsbn)){
+                    isbn = newIsbn;
+                }else {
+                    throw new Error('isbn 格式有误');
+                }
+            }
+            this.setTitle=  function (newTitle){
+                title = newTitle;
+            }
+            this.setAuthor= function (newAuthor){
+                author.push(newAuthor)
+            }
+            this.getAuthor = function(){
+                return author;
+            }
+            this.getIsbn = function(){
+                return isbn;
+            }
+            this.getTitle  = function(){
+                return title;
+            }
+            this.setIsbn(newIsbn);
+            this.setTitle(newTitle);
+            this.setAuthor(newAuthor);
+        }
+        var book = new Book('123123133','小红书','zy');
+        
+    </script>
+</body>
+
+</html>
