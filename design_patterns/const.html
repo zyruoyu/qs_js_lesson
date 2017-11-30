@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+
+<body>
+    <script>
+        const user = 'zyruoyu';
+        const arr = [1,2];
+        arr.push(3);
+        // arr = 'dd';
+        // 不用es6 const？ 能读取 但不能修改
+        // 实现私有属性 方法 
+        // var User = 'zy';
+        // 不能设置对象设置 让这个变量 跟你变量的查找作用域 不会经过 而读取它
+        // 块级作用域 函数作用域 全局作用域
+        var User = (function(){//自执行函数 立即执行 外界访问不到里面
+            var UPPER_BOUND = 100;//如何提出来
+            var ctor = function(){
+
+            }
+            ctor.getUPPER_BOUND = function(){//静态方法
+                return UPPER_BOUND;
+            }
+             return ctor;
+        })();
+        console.log(User.getUPPER_BOUND());
+    </script>
+</body>
+
+</html>
