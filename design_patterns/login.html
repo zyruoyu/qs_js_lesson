@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>单例实现登录弹窗</title>
+    <style>
+    .login-layer{
+        width: 200px;
+        height: 200px;
+        background: rgba(0,0,0,.6);
+        text-align: center;
+        line-height: 200px;
+        display: inline-block;
+    }
+    </style>
+</head>
+<body>
+    <button id="loginBtn">登录</button>
+    <!-- <button id="loginBt">登录</button> -->
+    <script>
+        const btn = document.getElementById('loginBtn');
+        
+        btn.addEventListener('click',function(){
+            // loginLayer.style.display = 'inline-block';
+            var login = LoginLayer.getInstance();
+            login.show();
+            // loginLayer();
+        },false);
+        // // 使用static将new限制一次
+        // // 函数只能执行一次 立即执行函数 用于创建闭包
+        // // JS 是一个 class free的语言 没有类 只有对象
+        // var loginLayer = (function(){
+        //     var div = document.createElement('div');
+        //     div.classList.add('login-layer');
+        //     div.innerHTML = '我是登录弹窗';
+        //     div.style.display='none';
+        //     document.body.appendChild(this.div);
+        //     return div;
+        // })();//立即执行函数 有危险 很明显 执行是需要消耗资源
+        // // 单例 如果能够推迟就好 推迟到点击按钮的那一刻
+        class LoginLayer {
+      constructor () {
+        this.div = null;
+        this.instance = null;
+        this.init();
+      }
+      init () {
+        this.div = document.createElement('div');
+        this.div.classList.add('login-layer');
+        this.div.innerHTML = "我是登录浮窗";
+        this.div.style.display = 'none';
+        document.body.appendChild(this.div);
+      }
+      static getInstance () {
+        if (!this.instance) {
+          this.instance = new LoginLayer();
+        }
+
+        return this.instance;
+      }
+      show () {
+        this.div.style.display = 'inline-block';
+      }
+      hide(){
+          this.div.style.display = 'none';
+      }
+    }
+
+    </script>
+</body>
+</html>
